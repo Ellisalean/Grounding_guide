@@ -29,7 +29,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="h-screen w-screen bg-slate-950 overflow-hidden relative select-none">
+    <div className="h-screen w-screen bg-slate-950 overflow-hidden print:overflow-visible print:h-auto relative select-none">
       {/* Header Info (No Print) */}
       <div className="absolute top-6 left-8 z-50 no-print flex items-center space-x-4">
         <div className="bg-indigo-600 px-3 py-1 rounded text-xs font-bold text-white uppercase tracking-wider">
@@ -51,7 +51,7 @@ const App: React.FC = () => {
         <span>Descargar PDF</span>
       </button>
 
-      {/* Main Slides Content */}
+      {/* Main Slides Content - Screen Only */}
       <div className="relative w-full h-full no-print">
         <div 
           className="flex h-full slide-transition" 
@@ -65,10 +65,10 @@ const App: React.FC = () => {
         </div>
       </div>
 
-      {/* Print-Only Layout (Visible during window.print()) */}
-      <div className="hidden print:block w-full">
+      {/* Print-Only Layout - Optimized for PDF Generation */}
+      <div className="hidden print:block">
         {SLIDES.map((slide) => (
-          <div key={`print-${slide.id}`} className="print-page relative">
+          <div key={`print-${slide.id}`} className="print-page">
              <SlideRenderer slide={slide} />
           </div>
         ))}
